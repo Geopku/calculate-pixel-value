@@ -1,0 +1,51 @@
+from PIL import Image
+import os
+
+#countercollection 库进行计算
+
+img_folder = "F://2020competition//test//LABLE"
+f = open("o.txt", 'w+')
+imlist = os.listdir(img_folder)
+print(imlist) 
+imlist.sort()
+total = 0
+count0 = 0
+count1 = 0
+count2 = 0
+count3 = 0
+count4 = 0
+count5 = 0
+count6 = 0
+for imagename in imlist:
+    imurl = os.path.join(img_folder, imagename)
+    print(imurl)
+    im = Image.open(imurl)
+    print(im)
+    a = 0 #定义在外面的作用，对比a和total的作用
+    for i in range(512):
+        for j in range(512):
+            px = im.getpixel((i, j))
+            if (px == 0):
+                count0 = count0 + 1
+            elif (px == 1):
+                count1 = count1 + 1
+            elif (px == 2):
+                count2 = count2 + 1
+            elif (px == 3):
+                count3 = count3 + 1
+            elif (px == 4):
+                count4 = count4 + 1
+            elif (px == 5):
+                count5 = count5 + 1
+            elif (px == 6):
+                count6 = count6 + 1
+            #print(px)
+            a = a + 1
+            total = total + 1
+    print("第一类", count0, "第二类", count1, "第三类", count2, "第四类", count3,
+              "第五类", count4, "第六类", count5, "第七类", count6, )
+    print("所占比列：第一类", count0 / total, "第二类", count1 / total, "第三类", count2 / total, "第四类", count3 / total,
+              "第五类", count4 / total, "第六类", count5 / total, "第七类", count6 / total, )
+    print("总像素数", a)
+    print("total", total)
+    print(px, file=f)
