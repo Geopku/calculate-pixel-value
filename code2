@@ -1,0 +1,11 @@
+import os
+from os import path
+import shutil
+
+src = "F:\\2020competition\\test\\GHLabel"
+dst = "F:\\2020competition\\test\\LABLE2"
+
+#files = [i for i in os.listdir(src) if i.startswith("A", 1) and path.isfile(path.join(src, i))]
+files = [i for i in os.listdir(src) if (len(i) == 9) and path.isfile(path.join(src, i))]
+for f in files:
+    shutil.copy(path.join(src, f), dst)
